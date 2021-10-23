@@ -1,39 +1,13 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Container, Box, Grid } from '@mui/material';
 
+import { useTasks } from '../hooks/tasks-hook';
 import { TodoTitle } from './TodoTitle';
 import { TodoInput } from './TodoInput';
 import { TodoList } from './TodoList';
-import { task } from '../types';
 
 export const Todo: FC = () => {
-  const [tasks, setTasks] = useState<Array<task>>([]);
-
-  const onDeleteTask = (id: number) => {
-    setTasks((prev) => prev.filter((task) => task.id !== id));
-  };
-
-  const onComplitedTask = (id: number) => {
-    setTasks((prev) =>
-      prev.map((task) => {
-        if (task.id === id) {
-          task.complited = !task.complited;
-        }
-        return task;
-      }),
-    );
-  };
-
-  const onEditTextTask = (id: number) => {
-    setTasks((prev) =>
-      prev.map((task) => {
-        if (task.id === id) {
-          task.edit = !task.edit;
-        }
-        return task;
-      }),
-    );
-  };
+  const { tasks, setTasks, onComplitedTask, onDeleteTask, onEditTextTask } = useTasks();
 
   return (
     <Container component="main" maxWidth="xs">
