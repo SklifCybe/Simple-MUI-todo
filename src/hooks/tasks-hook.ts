@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { task } from '../types';
 
 export const useTasks = () => {
-  const initialTasks = JSON.parse(localStorage.getItem('tasks') || '');
-  const [tasks, setTasks] = useState<Array<task>>(initialTasks || []);
+  const initialTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+  const [tasks, setTasks] = useState<Array<task>>(initialTasks);
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
